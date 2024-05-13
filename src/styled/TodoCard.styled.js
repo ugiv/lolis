@@ -4,7 +4,8 @@ import styled from "styled-components";
 export const StyledTodoCard = styled.div`
     position: relative;
     width: 100%;
-    height: 130px;
+    height: auto;
+    height-min: 130px;
     margin: 20px 0;
     background-color: white;
     border-radius: 10px;
@@ -12,6 +13,7 @@ export const StyledTodoCard = styled.div`
     flex-direction: rows;
     justify-content: space-between;
     align-items: flex-start;
+    cursor: pointer;
 `;
 
 export const StyledLeftText = styled.div`
@@ -45,4 +47,86 @@ export const StyledButtonSolidGreenTodoCard = styled.div`
     border-radius: 5px;
     color: white;
     font-weight: bold;
+`;
+
+export const StyledInputTodoCard = styled.div`
+    width: 80%;
+    height: 40px;
+    border-bottom: 1px solid #CCCCCC;
+    margin: 10px 0;
+    display: flex;
+    flex-direction: rows;
+    justify-content: center;
+    align-items: center;
+    input {
+        width: 100%;
+        height: 95%;
+        border: none;
+        font-size: 18px;
+        color: #1FD07D;
+    }
+
+    input:focus {
+        outline: none;
+    }
+`;
+
+export const StyledTextareaTodoCard = styled.div`
+    width: 80%;
+    height: auto;
+    border-bottom: 1px solid #CCCCCC;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: rows;
+    justify-content: center;
+    align-items: center;
+
+    textarea {
+        resize: none;
+        width: 100%;
+        height: 95%;
+        border: none;
+        font-size: 14px;
+        color: #454343;
+    }
+
+    textarea:focus {
+        outline: none;
+    }
+`;
+
+export const StyledInputDateTodoCard = styled.div`
+    width: 30%;
+    height: 40px;
+    background: #CCCCCC;
+    border-radius: 5px;
+    margin: 5px 0;
+    input {
+        width: 90%;
+        height: 100%;
+        border: none;
+        background: none;
+    }
+
+    input:focus {
+        outline: none;
+    }
+`;
+
+export const StyledSelectTodoCard = styled.div`
+    width: 30%;
+    height: 40px;
+    background: #CCCCCC;
+    border-radius: 5px;
+    margin: 5px 0;
+    select {
+        width: 90%;
+        height: 100%;
+        border: none;
+        background: none;
+    }
+
+    select:focus {
+        outline: none;
+    }
 `;
