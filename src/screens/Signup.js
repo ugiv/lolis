@@ -8,7 +8,7 @@ export default function Signup(){
                 <h2>LOLIS</h2>
             </StyledHeaderCenter>
             <StyledBoxMedium>
-                <h4 style={{fontSize: 24}}>SIGNUP</h4>
+                <h4 style={{fontSize: 20}}>SIGNUP</h4>
                 <StyledLabelInput>
                     <p>Username</p>
                 </StyledLabelInput>

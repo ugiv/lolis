@@ -4,6 +4,7 @@ import Login from './screens/Login';
 import { Routes, Route } from 'react-router-dom';
 import Signup from './screens/Signup';
 import Layout from './screens/Layout';
+import Dashboard from './screens/dashboard';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path='/dashboard' element={<Dashboard />} />
         </Route>
       </Routes>
     </div>

@@ -13,7 +13,6 @@ export default function Home() {
                     <StyledSolidLittleButtonBlack>
                         <Link to="/login" style={{color: "white", textDecoration: 'none', fontWeight: "bold"}}>Login</Link>
                     </StyledSolidLittleButtonBlack>
-
                 </div>
             </StyledHeaderSpaceBetween>
         </StyledBodyLightGreen>

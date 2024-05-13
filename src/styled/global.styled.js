@@ -17,6 +17,10 @@ export const StyledBodyLightGreen = styled.div`
     width: 100%;
     height: 100%;
     background-color: #E2FFF1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 `;
 
 export const StyledHeaderCenter = styled.div`
@@ -41,11 +45,33 @@ export const StyledHeaderSpaceBetween = styled.div`
     justify-content: space-between;
     align-items: center;
 `;
-export const StyledBoxMedium = styled.div`
+export const StyledBoxLarge = styled.div`
     position: relative;
+    width: 90%;
+    height: 80%;
+    margin-top: 5%;
+    display: flex;
+    flex-direction: rows;
+    justify-content: space-between;
+    align-items: flex-start;
+`;
+
+export const StyledBoxFourtyPercent = styled.div`
+    position: relative;
+    width: 40%;
+    hight: auto;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+`;
+
+export const StyledBoxMedium = styled.div`
+position: relative;
     width: 30%;
     height: auto;
-    padding: 40px 0;
+    padding: 10px 0;
     border-radius: 20px;
     background-color: white;
     display: flex;
@@ -57,6 +83,7 @@ export const StyledBoxMedium = styled.div`
         border: 1px solid #1FD07D;
     }
 `;
+
 
 export const StyledInput = styled.div`
     width: 70%;
@@ -96,6 +123,7 @@ export const StyledSubmitButton = styled.div`
     justify-content: center;
     align-items: center;
     margin-top: 30px;
+
     input {
         width: 90%;
         height: 90%;
@@ -103,6 +131,7 @@ export const StyledSubmitButton = styled.div`
         border: none;
         font-weight: bold;
         font-size: 16px;
+        line-height: 2;
         color: white;
         cursor: pointer;
     }
@@ -120,6 +149,20 @@ export const StyledSolidLittleButtonBlack = styled.div`
     border-radius: 10px;
 `;
 
+export const StyledSolidLittleButtonGreen = styled.div`
+    padding: 0px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1FD07D;
+    border: 1px solid #1FD07D;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    line-height: 0.5;
+`;
+
 export const StyledHollowLittleButtonBlack = styled.div`
     height: 40px;
     width: 80px;
@@ -129,4 +172,14 @@ export const StyledHollowLittleButtonBlack = styled.div`
     align-items: center;
     border: 1px solid black;
     border-radius: 10px;
+`;
+
+export const StyledImageLarge = styled.div`
+    width: 100%;
+    height: auto;
+
+    img {
+        width: 100%;
+        height: auto;
+    }
 `;
