@@ -162,6 +162,7 @@ export const StyledSolidLittleButtonGreen = styled.div`
     color: white;
     font-weight: bold;
     line-height: 0.5;
+    cursor: pointer;
 `;
 
 export const StyledHollowLittleButtonBlack = styled.div`

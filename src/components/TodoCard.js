@@ -1,10 +1,35 @@
-import { useState } from "react";
-import { StyledButtonSolidGreenTodoCard, StyledInputDateTodoCard, StyledInputTodoCard, StyledLeftText, StyledSelectTodoCard, StyledTextareaTodoCard, StyledTodoCard } from "../styled/TodoCard.styled";
+import { useEffect, useState } from "react";
+import { 
+    StyledButtonSolidGreenTodoCard, StyledButtonSolidGreyTodoCard, StyledInputDateTodoCard, 
+    StyledInputTodoCard, StyledLeftText, StyledSelectTodoCard, 
+    StyledTextareaTodoCard, StyledTodoCard 
+} from "../styled/TodoCard.styled";
 import ArrowButton from "./ArrowButton";
 
-export default function TodoCard({props}){
+export default function TodoCard({props, handleNewCard, defaultStatus}){
     const {title, description, date, status} = props;
     const [detail, setDetail] = useState(false);
+    const [newTitle, setNewTitle] = useState("");
+    const [newDescription, setNewDescription] = useState("");
+    const [newDate, setNewDate] = useState("");
+    const [newStatus, setNewStatus] = useState("");
+    useEffect(() => {
+        if (defaultStatus){
+            setDetail(true);
+        };
+    }, [defaultStatus])
+    const handleSubmit = () => {
+        const newData = {
+            "title": newTitle,
+            "description": newDescription,
+            "date": newDate,
+            "status": newStatus
+        }
+        handleNewCard(newData);
+    }
+    const handleCancel = () => {
+        handleNewCard();
+    }
     const handleClick = () => {
         if (detail) {
             setDetail(false);
@@ -31,24 +56,27 @@ export default function TodoCard({props}){
             <StyledTodoCard>
                 <StyledLeftText>
                     <StyledInputTodoCard>
-                        <input type="text" value={title} />
+                        <input type="text" value={newTitle ? newTitle : title} onChange={(e) => setNewTitle(e.target.value)} placeholder="What is important thing should you remember.."/>
                     </StyledInputTodoCard>
                     <StyledTextareaTodoCard>
-                        <textarea value={description} />
+                        <textarea value={newDescription ? newDescription : description} onChange={(e) => setNewDescription(e.target.value)} placeholder="Why that is important for you"/>
                     </StyledTextareaTodoCard>
                     <StyledInputDateTodoCard>
-                        <input type="date" value={date} />
+                        <input type="date" value={newDate ? newDate : date} onChange={(e) => setNewDate(e.target.value)}/>
                     </StyledInputDateTodoCard>
                     <StyledSelectTodoCard>
-                        <select defaultValue={status}>
-                            <option value={status} selected disabled hidden>{status}</option>
-                            <option>On List</option>
-                            <option>In Progress</option>
+                        <select onChange={(e) => setNewStatus(e.target.value)}>
+                            <option value={newStatus ? newStatus : status} selected disabled hidden>{newStatus ? newStatus : status}</option>
+                            <option value="On List">On List</option>
+                            <option value="In Progress">In Progress</option>
                         </select>
                     </StyledSelectTodoCard>
                 </StyledLeftText>
+                <StyledButtonSolidGreyTodoCard>
+                    <p onClick={handleCancel}>Cancel</p>
+                </StyledButtonSolidGreyTodoCard>
                 <StyledButtonSolidGreenTodoCard>
-                    <p>save</p>
+                    <p onClick={handleSubmit}>Save</p>
                 </StyledButtonSolidGreenTodoCard>
                 <ArrowButton detail={detail} handleClick={handleClick} />
             </StyledTodoCard>

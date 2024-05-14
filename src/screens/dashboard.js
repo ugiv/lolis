@@ -2,11 +2,18 @@ import { StyledBodyLightGreen, StyledBoxFourtyPercent, StyledBoxLarge, StyledHea
 import hero from '../images/hero.png';
 import TodoCard from "../components/TodoCard";
 import { userData } from "../data/dummy";
+import { useState } from "react";
 
 const data = userData.todo;
 
 export default function Dashboard(){
-    console.log(data[0]);
+    const [newCard, setNewCard] = useState();
+    const handleClick = () => {
+        setNewCard({"title": "", "description": "", "date": "", "status": ""})
+    }
+    const handleNewCard = (data) => {
+        setNewCard(data);
+    };
     return (
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
@@ -15,7 +22,7 @@ export default function Dashboard(){
                     <p>List Todo</p>
                     <p>History</p>
                     <StyledSolidLittleButtonGreen>
-                        <p>Create New</p>
+                        <p onClick={handleClick}>Create New</p>
                     </StyledSolidLittleButtonGreen>
                 </div>
             </StyledHeaderSpaceBetween>
@@ -28,6 +35,9 @@ export default function Dashboard(){
                     <h4>IT'S YOUR <br/> LIST OF THE DAYS</h4>
                 </StyledBoxFourtyPercent>
                 <StyledBoxFourtyPercent>
+                    {
+                        newCard && <TodoCard props={newCard} handleNewCard={handleNewCard} defaultStatus={true}/>
+                    }
                     {
                         data.map(card => {
                             return <TodoCard props={card} />

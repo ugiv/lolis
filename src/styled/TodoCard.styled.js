@@ -49,6 +49,18 @@ export const StyledButtonSolidGreenTodoCard = styled.div`
     font-weight: bold;
 `;
 
+export const StyledButtonSolidGreyTodoCard = styled.div`
+    position: absolute;
+    bottom: 15px;
+    right: 90px;
+    padding: 0 15px;
+    background: #CCCCCC;
+    line-height: 0;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+`;
+
 export const StyledInputTodoCard = styled.div`
     width: 80%;
     height: 40px;
