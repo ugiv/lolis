@@ -1,19 +1,78 @@
 import { StyledBodyLightGreen, StyledBoxFourtyPercent, StyledBoxLarge, StyledHeaderSpaceBetween, StyledImageLarge, StyledSolidLittleButtonGreen } from "../styled/global.styled";
 import hero from '../images/hero.png';
 import TodoCard from "../components/TodoCard";
-import { userData } from "../data/dummy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
 
-const data = userData.todo;
 
 export default function Dashboard(){
+    let navigate = useNavigate();
     const [newCard, setNewCard] = useState();
-    const handleClick = () => {
+    const [data, setData] = useState([]);
+    const [reload, setReload] = useState(false);
+    const getData = async () => {
+        try {
+            const req = await fetch('http://localhost:8154/get/todo_list', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                }
+            });
+            const response = await req.json();
+            if (response.status === 'ok'){
+                setData(response.response)
+            }
+        } catch(err) {
+            console.log(err);
+        }
+    }
+    const addTodoList = async (data) => {
+        console.log(data);
+        try {
+            const req = await fetch('http://localhost:8154/add/todo_list', {
+                method: 'POST',
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify(data)
+            });
+            const response = await req.json();
+            if (response.status === "ok"){
+                setReload(true)
+            }
+        } catch (err) {
+            console.log(err)
+        }
+    }
+    const logout = async () => {
+        try {
+            await fetch('http://localhost:8154/logout', {
+                method: 'GET',
+                credentials: 'include',
+            })
+            navigate('/login')
+        } catch (err){
+            console.log(err)
+        }
+    }
+    const handleCreateNewCard = () => {
         setNewCard({"title": "", "description": "", "date": "", "status": ""})
     }
     const handleNewCard = (data) => {
-        setNewCard(data);
+        addTodoList(data);
     };
+    const handleLogout = () => {
+        logout();
+    }
+    useEffect(() => {
+        getData();
+        setReload(false);
+    }, [reload])
     return (
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
@@ -22,7 +81,7 @@ export default function Dashboard(){
                     <p>List Todo</p>
                     <p>History</p>
                     <StyledSolidLittleButtonGreen>
-                        <p onClick={handleClick}>Create New</p>
+                        <p onClick={handleCreateNewCard}>Create New</p>
                     </StyledSolidLittleButtonGreen>
                 </div>
             </StyledHeaderSpaceBetween>
@@ -33,6 +92,7 @@ export default function Dashboard(){
                     </StyledImageLarge>
                     <p>jdfjkhjkeahf</p>
                     <h4>IT'S YOUR <br/> LIST OF THE DAYS</h4>
+                    <p onClick={handleLogout} style={{fontWeight: "bold"}}>Log Out</p>
                 </StyledBoxFourtyPercent>
                 <StyledBoxFourtyPercent>
                     {
