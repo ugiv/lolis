@@ -9,7 +9,6 @@ export default function Dashboard(){
     let navigate = useNavigate();
     const [newCard, setNewCard] = useState();
     const [data, setData] = useState([]);
-    const [reload, setReload] = useState(false);
     const getData = async () => {
         try {
             const req = await fetch('http://localhost:8154/get/todo_list', {
@@ -43,7 +42,7 @@ export default function Dashboard(){
             });
             const response = await req.json();
             if (response.status === "ok"){
-                setReload(true)
+                window.location.reload();
             }
         } catch (err) {
             console.log(err)
@@ -60,6 +59,26 @@ export default function Dashboard(){
             console.log(err)
         }
     }
+    const deleteTodoList = async (id) => {
+        try {
+            const req = await fetch('http://localhost:8154/delete/todo_list', {
+                method: "DELETE",
+                mode: 'cors',
+                credentials: 'include',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({id: id})
+            });
+            const response = await req.json();
+            if (response.status === "ok"){
+                window.location.reload();
+            }
+        } catch (error){
+            console.log(error)
+        }
+    }
     const handleCreateNewCard = () => {
         setNewCard({"title": "", "description": "", "date": "", "status": ""})
     }
@@ -71,8 +90,7 @@ export default function Dashboard(){
     }
     useEffect(() => {
         getData();
-        setReload(false);
-    }, [reload])
+    }, [])
     return (
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
@@ -96,11 +114,19 @@ export default function Dashboard(){
                 </StyledBoxFourtyPercent>
                 <StyledBoxFourtyPercent>
                     {
-                        newCard && <TodoCard props={newCard} handleNewCard={handleNewCard} defaultStatus={true}/>
-                    }
+                        newCard && <TodoCard 
+                                    props={newCard} 
+                                    handleNewCard={handleNewCard} 
+                                    defaultStatus={true}
+                                    />
+                                }
                     {
                         data.map(card => {
-                            return <TodoCard props={card} />
+                            return (<TodoCard 
+                                    props={card} 
+                                    handleDelete={deleteTodoList} 
+                                />
+                            )
                         })
                     }
                 </StyledBoxFourtyPercent>
