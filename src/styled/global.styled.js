@@ -15,7 +15,7 @@ export const StyledBody = styled.div`
 export const StyledBodyLightGreen = styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
+    height-min: 100%;
     min-height: 750px;
     background-color: #E2FFF1;
     display: flex;
