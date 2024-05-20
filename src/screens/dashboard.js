@@ -14,6 +14,7 @@ export default function Dashboard(){
     let navigate = useNavigate();
     const [newCard, setNewCard] = useState();
     const [data, setData] = useState([]);
+    const [list, setList] = useState(true);
     const handleData = (data) => {
         setData(data)
     }
@@ -30,16 +31,40 @@ export default function Dashboard(){
     const handleLogout = () => {
         logout(navigate);
     }
+    const handleCancel = () => {
+        setNewCard();
+    }
     useEffect(() => {
+        const todoList = document.getElementById('ListTodo');
+        const history = document.getElementById('HistoryTodo');
+        if (list) {
+            history.style.borderBottom = 'none';
+            history.style.fontWeight = 'normal';
+            todoList.style.borderBottom = '2px solid black';
+            todoList.style.fontWeight = 'bold';
+        } else {
+            todoList.style.borderBottom = 'none';
+            todoList.style.fontWeight = 'normal';
+            history.style.borderBottom = '2px solid black';
+            history.style.fontWeight = 'bold';
+        }
         getData(handleData);
-    }, [])
+    }, [list])
     return (
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
                 <h2>LOLIS</h2>
                 <div style={{width: 300, display: "flex", flexDirection: "rows", justifyContent: "space-between", alignItems: "center"}}>
-                    <p>List Todo</p>
-                    <p>History</p>
+                    <p 
+                            id="ListTodo"
+                            style={{padding: '10px 1px', cursor: 'pointer'}}
+                            onClick={() => setList(true)}
+                    >List Todo</p>
+                    <p 
+                            id="HistoryTodo"
+                            style={{padding: '10px 1px', cursor: 'pointer'}}
+                            onClick={() => setList(false)}
+                    >History</p>
                     <StyledSolidLittleButtonGreen>
                         <p onClick={handleCreateNewCard}>Create New</p>
                     </StyledSolidLittleButtonGreen>
@@ -61,20 +86,39 @@ export default function Dashboard(){
                 </StyledBoxFourtyPercent>
                 <StyledBoxFourtyPercent>
                     {
-                        newCard && <TodoCard 
+                        newCard && list && <TodoCard 
                                     props={newCard} 
                                     handleNewCard={handleNewCard} 
-                                    defaultStatus={true}
+                                    defaultStatus={'new'}
+                                    handleCancel={handleCancel}
                                     />
-                                }
+                    }
                     {
-                        data.map(card => {
-                            return (<TodoCard 
-                                    props={card} 
-                                    handleDelete={deleteTodoList} 
-                                />
-                            )
-                        })
+                           list ?
+                           data.map(card => {
+                               return card.status !== 'done' ?
+                                       <TodoCard 
+                                               props={card} 
+                                               handleDelete={deleteTodoList} 
+                                               defaultStatus={'listed'}
+                                           />
+                                : <p>Create Your Todo List</p>
+
+                            })
+                            :
+                            data.map(card => {
+                                return card.status === 'done' ?
+                                        <TodoCard 
+                                        props={card} 
+                                        handleDelete={deleteTodoList} 
+                                        defaultStatus={'listed'}
+                                    />
+                                : <p>No Todo List History</p>
+                            })
+
+                    }
+                    {
+
                     }
                 </StyledBoxFourtyPercent>
             </StyledBoxLarge>

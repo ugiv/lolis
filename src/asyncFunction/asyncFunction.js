@@ -107,3 +107,20 @@ export const loginAsync = async (userData, navigate) => {
         throw err
     }
 }
+
+export const updateStatus = async (newStatus) => {
+    try {
+        await fetch('http://localhost:8154/update/todo_list/status', {
+            method: "PUT",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }, 
+            body: JSON.stringify(newStatus)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
