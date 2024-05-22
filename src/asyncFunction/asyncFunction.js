@@ -17,8 +17,27 @@ export const getData = async (handleData) => {
         console.log(err);
     }
 }
+
+export const getUserName = async (handleData) => {
+    try {
+        const req = await fetch('http://localhost:8154/get/users/name', {
+            method: "GET",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
+        })
+        const response = await req.json();
+        if (response.status === 'ok'){
+            handleData(response.response);
+        }
+    } catch (error) {
+        console.log(error)
+    }
+}
 export const addTodoList = async (data) => {
-    console.log(data);
     try {
         const req = await fetch('http://localhost:8154/add/todo_list', {
             method: 'POST',
@@ -122,5 +141,56 @@ export const updateStatus = async (newStatus) => {
         })
     } catch (error) {
         console.log(error)
+    }
+}
+
+export const updateTitle = async (newTitle) => {
+    try {
+        await fetch('http://localhost:8154/update/todo_list/title', {
+            method: "PUT",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(newTitle)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateDescription = async (newDescription) => {
+    try {
+        await fetch('http://localhost:8154/update/todo_list/description', {
+            method: "PUT",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": 'application/json',
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(newDescription)
+        })
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export const updateDate = async (data) => {
+    try {
+        await fetch('http://localhost:8154/update/todo_list/date', {
+            method: "PUT",
+            mode: "cors",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            },
+            body: JSON.stringify(data)
+        })
+    } catch (error) {
+        console.log(error);
     }
 }

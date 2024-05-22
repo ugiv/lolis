@@ -7,7 +7,9 @@ import {useNavigate} from 'react-router-dom';
 import { 
         getData, 
         addTodoList, 
-        logout, deleteTodoList 
+        logout, deleteTodoList, 
+        updateStatus,
+        getUserName
        } from "../asyncFunction/asyncFunction";
 
 export default function Dashboard(){
@@ -15,8 +17,12 @@ export default function Dashboard(){
     const [newCard, setNewCard] = useState();
     const [data, setData] = useState([]);
     const [list, setList] = useState(true);
+    const [name, setName] = useState('');
     const handleData = (data) => {
         setData(data)
+    }
+    const handleUserName = (name) => {
+        setName(name);
     }
     const handleCreateNewCard = () => {
         setNewCard({
@@ -28,6 +34,9 @@ export default function Dashboard(){
     const handleNewCard = (data) => {
         addTodoList(data);
     };
+    const handleUpdateTodoListStatus = (data) => {
+        updateStatus(data)
+    }
     const handleLogout = () => {
         logout(navigate);
     }
@@ -49,7 +58,9 @@ export default function Dashboard(){
             history.style.fontWeight = 'bold';
         }
         getData(handleData);
-    }, [list])
+        getUserName(handleUserName);
+        console.log(name);
+    }, [list, name])
     return (
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
@@ -75,7 +86,7 @@ export default function Dashboard(){
                     <StyledImageLarge>
                         <img src={hero} alt="hero"/>
                     </StyledImageLarge>
-                    <p>Your Name</p>
+                    <p style={{fontWeight: 'bold', textTransform: 'uppercase'}}>{name}</p>
                     <h4>IT'S YOUR <br/> LIST OF THE DAYS</h4>
                     <p 
                         onClick={handleLogout} 
@@ -100,6 +111,7 @@ export default function Dashboard(){
                                        <TodoCard 
                                                props={card} 
                                                handleDelete={deleteTodoList} 
+                                               handleUpdateTodoListStatus={handleUpdateTodoListStatus}
                                                defaultStatus={'listed'}
                                            />
                                 : <p>Create Your Todo List</p>
@@ -115,10 +127,6 @@ export default function Dashboard(){
                                     />
                                 : <p>No Todo List History</p>
                             })
-
-                    }
-                    {
-
                     }
                 </StyledBoxFourtyPercent>
             </StyledBoxLarge>

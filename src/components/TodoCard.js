@@ -5,23 +5,42 @@ import {
     StyledTextareaTodoCard, StyledTodoCard 
 } from "../styled/TodoCard.styled";
 import ArrowButton from "./ArrowButton";
-import { updateStatus } from "../asyncFunction/asyncFunction";
+import { updateDate, updateDescription, updateStatus, updateTitle } from "../asyncFunction/asyncFunction";
 
 export default function TodoCard({props, handleNewCard, defaultStatus, handleDelete, handleCancel}){
     const {id, title, description, date, status} = props;
     const [detail, setDetail] = useState('listed');
     const [open, setOpen] = useState(false);
+    const [listedTitle, setListedTitle] = useState('');
+    const [listedDescription, setListedDescription] = useState('');
+    const [listedDate, setListedDate] = useState("");
     const [newTitle, setNewTitle] = useState("");
     const [newDescription, setNewDescription] = useState("");
     const [newDate, setNewDate] = useState("");
     const [newStatus, setNewStatus] = useState("");
     useEffect(() => {
+        setListedTitle(title);
+        setListedDescription(description);
+        setListedDate(date);
         if (defaultStatus === 'listed'){
             setDetail('listed');
         } else {
             setDetail('new')
         }
-    }, [defaultStatus])
+    }, [defaultStatus, title, description, date]);
+
+    const handleUpdateTitle = (newTitle) => {
+        setListedTitle(newTitle);
+        updateTitle({title: newTitle});
+    }
+    const handleUpdateDescription = (newDescription) => {
+        setListedDescription(newDescription);
+        updateDescription({description: newDescription});
+    }
+    const handleUpdateDate = (data) => {
+        setListedDate(data);
+        updateDate({date: data});
+    }
     const handleSubmit = () => {
         const newData = {
             "title": newTitle,
@@ -36,6 +55,7 @@ export default function TodoCard({props, handleNewCard, defaultStatus, handleDel
     }
     const handleUpdateStatus = (data) => {
         updateStatus(data);
+        window.location.reload();
     }
     const handleClick = () => {
         if (open) {
@@ -93,29 +113,28 @@ export default function TodoCard({props, handleNewCard, defaultStatus, handleDel
                     <StyledLeftText>
                         <StyledInputTodoCard>
                             <input type="text" 
-                                value={newTitle ? newTitle : title} 
-                                onChange={(e) => setNewTitle(e.target.value)} 
+                                value={listedTitle} 
+                                onChange={(e) => handleUpdateTitle(e.target.value)} 
                                 placeholder="What is important thing should you remember.."/>
                         </StyledInputTodoCard>
                         <StyledTextareaTodoCard>
                             <textarea 
-                                value={newDescription ? newDescription : description} 
-                                onChange={(e) => setNewDescription(e.target.value)} 
+                                value={listedDescription} 
+                                onChange={(e) => handleUpdateDescription(e.target.value)} 
                                 placeholder="Why that is important for you"/>
                         </StyledTextareaTodoCard>
                         <StyledInputDateTodoCard>
                             <input type="date" 
-                                value={newDate ? newDate : date} 
-                                onChange={(e) => setNewDate(e.target.value)}/>
+                                value={listedDate} 
+                                onChange={(e) => handleUpdateDate(e.target.value)}/>
                         </StyledInputDateTodoCard>
                         <StyledSelectTodoCard>
-                            <select onChange={(e) => setNewStatus(e.target.value)}>
+                            <select value={status} onChange={(e) => handleUpdateStatus({status: e.target.value})}>
                                 <option 
-                                        value={newStatus ? newStatus : status} 
                                         selected 
                                         disabled 
                                         hidden
-                                >{newStatus ? newStatus : status}</option>
+                                >{status}</option>
                                 <option value="On List">On List</option>
                                 <option value="In Progress">In Progress</option>
                             </select>
@@ -134,9 +153,9 @@ export default function TodoCard({props, handleNewCard, defaultStatus, handleDel
             return (
                 <StyledTodoCard>
                     <StyledLeftText>
-                        <h5>{title}</h5>
-                        <p>{description}</p>
-                        <p>{date}</p>
+                        <h5>{listedTitle}</h5>
+                        <p>{listedDescription}</p>
+                        <p>{listedDate}</p>
                     </StyledLeftText>
                     <StyledButtonSolidGreenTodoCard>
                         <p>{status}</p>
