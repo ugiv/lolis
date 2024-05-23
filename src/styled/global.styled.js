@@ -15,10 +15,11 @@ export const StyledBody = styled.div`
 export const StyledBodyLightGreen = styled.div`
     position: relative;
     width: 100%;
-    height-min: 100%;
+    height: 100%;
     min-height: 750px;
     background-color: #E2FFF1;
     display: flex;
+    overflow: scroll;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -39,38 +40,55 @@ export const StyledHeaderSpaceBetween = styled.div`
     position: absolute;
     top: 0;
     height: 80px;
-    width: 90%;
-    padding: 0 5%;
+    width: 94%;
+    padding: 0 3%;
     display: flex;
-    flex-direction: rows;
+    flex-direction: row;
     justify-content: space-between;
     align-items: center;
+
+    @media only screen and (min-width: 900px){
+        width: 90%;
+        padding: 0 5%;
+    }
 `;
 export const StyledBoxLarge = styled.div`
     position: relative;
-    width: 90%;
+    width: 100%;
     height: 80%;
     margin-top: 5%;
     display: flex;
-    flex-direction: rows;
-    justify-content: space-between;
-    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    @media only screen and (min-width: 1000px){
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+        width: 90%;
+    }
 `;
 
 export const StyledBoxFourtyPercent = styled.div`
     position: relative;
-    width: 40%;
+    width: 90%;
     hight: auto;
     margin: 0;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    @media only screen and (min-width: 900px){
+        width: 40%
+    }
 `;
 
 export const StyledBoxMedium = styled.div`
-position: relative;
-    width: 30%;
+    position: relative;
+    width: 80%;
+    min-width: 200px;
+    max-width: 400px;
     height: auto;
     padding: 10px 0;
     border-radius: 20px;
@@ -79,7 +97,11 @@ position: relative;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
+
+    @media only screen and (min-width: 900px){
+        width: 30%;
+        min-width: 300px;
+    }   
     div.box:focus {
         border: 1px solid #1FD07D;
     }
@@ -151,7 +173,7 @@ export const StyledSolidLittleButtonBlack = styled.div`
 `;
 
 export const StyledSolidLittleButtonGreen = styled.div`
-    padding: 0px 15px;
+    padding: 0px 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -163,6 +185,10 @@ export const StyledSolidLittleButtonGreen = styled.div`
     font-weight: bold;
     line-height: 0.5;
     cursor: pointer;
+    font-size: 14px;
+    @media only screen and (min-max: 900px){
+        font-size: 16px;
+    }
 `;
 
 export const StyledHollowLittleButtonBlack = styled.div`
@@ -184,4 +210,11 @@ export const StyledImageLarge = styled.div`
         width: 100%;
         height: auto;
     }
+`;
+
+export const StyledParagraphButton = styled.p`
+    font-size: 14px;
+    padding: 10px 5px;
+    margin-right: 10px;
+    cursor: pointer;
 `;

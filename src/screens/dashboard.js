@@ -1,4 +1,4 @@
-import { StyledBodyLightGreen, StyledBoxFourtyPercent, StyledBoxLarge, StyledHeaderSpaceBetween, StyledImageLarge, StyledSolidLittleButtonGreen } from "../styled/global.styled";
+import { StyledBodyLightGreen, StyledBoxFourtyPercent, StyledBoxLarge, StyledHeaderSpaceBetween, StyledImageLarge, StyledParagraphButton, StyledSolidLittleButtonGreen } from "../styled/global.styled";
 import hero from '../images/hero.png';
 import TodoCard from "../components/TodoCard";
 import { useEffect, useState } from "react";
@@ -65,17 +65,17 @@ export default function Dashboard(){
         <StyledBodyLightGreen>
             <StyledHeaderSpaceBetween>
                 <h2>LOLIS</h2>
-                <div style={{width: 300, display: "flex", flexDirection: "rows", justifyContent: "space-between", alignItems: "center"}}>
-                    <p 
-                            id="ListTodo"
-                            style={{padding: '10px 1px', cursor: 'pointer'}}
-                            onClick={() => setList(true)}
-                    >List Todo</p>
-                    <p 
-                            id="HistoryTodo"
-                            style={{padding: '10px 1px', cursor: 'pointer'}}
-                            onClick={() => setList(false)}
-                    >History</p>
+                <div style={{width: "auto", margin: "0 10px", display: "flex", flexDirection: "rows", justifyContent: "space-between", alignItems: "center"}}>
+                    <StyledParagraphButton 
+                                id="ListTodo" 
+                                onClick={() => setList(true)}
+                    >List Todo
+                    </StyledParagraphButton>
+                    <StyledParagraphButton 
+                                id="HistoryTodo"
+                                onClick={() => setList(false)}
+                    >History
+                    </StyledParagraphButton>
                     <StyledSolidLittleButtonGreen>
                         <p onClick={handleCreateNewCard}>Create New</p>
                     </StyledSolidLittleButtonGreen>
