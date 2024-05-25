@@ -113,6 +113,11 @@ export const StyledInputDateTodoCard = styled.div`
     background: #CCCCCC;
     border-radius: 5px;
     margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
     input {
         width: 90%;
         height: 100%;
@@ -131,13 +136,16 @@ export const StyledSelectTodoCard = styled.div`
     background: #CCCCCC;
     border-radius: 5px;
     margin: 5px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     select {
         width: 90%;
         height: 100%;
         border: none;
         background: none;
     }
-
     select:focus {
         outline: none;
     }

@@ -35,7 +35,8 @@ export default function Dashboard(){
         addTodoList(data);
     };
     const handleUpdateTodoListStatus = (data) => {
-        updateStatus(data)
+        updateStatus(data);
+        window.location.reload();
     }
     const handleLogout = () => {
         logout(navigate);
@@ -107,25 +108,26 @@ export default function Dashboard(){
                     {
                            list ?
                            data.map(card => {
-                               return card.status !== 'done' ?
+                               return card.status !== 'Done' ?
                                        <TodoCard 
                                                props={card} 
                                                handleDelete={deleteTodoList} 
                                                handleUpdateTodoListStatus={handleUpdateTodoListStatus}
                                                defaultStatus={'listed'}
                                            />
-                                : <p>Create Your Todo List</p>
+                                : <></>
 
                             })
                             :
                             data.map(card => {
-                                return card.status === 'done' ?
+                                return card.status === 'Done' ?
                                         <TodoCard 
                                         props={card} 
-                                        handleDelete={deleteTodoList} 
+                                        handleDelete={deleteTodoList}
+                                        handleUpdateTodoListStatus={handleUpdateTodoListStatus}
                                         defaultStatus={'listed'}
                                     />
-                                : <p>No Todo List History</p>
+                                : <></>
                             })
                     }
                 </StyledBoxFourtyPercent>
