@@ -1,7 +1,7 @@
 // import { useNavigate } from "react-router-dom";
 export const getData = async (handleData) => {
     try {
-        const req = await fetch('http://localhost:8154/get/todo_list', {
+        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/todo_list', {
             method: 'GET',
             credentials: 'include',
             headers: {
@@ -20,7 +20,7 @@ export const getData = async (handleData) => {
 
 export const getUserName = async (handleData) => {
     try {
-        const req = await fetch('http://localhost:8154/get/users/name', {
+        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/users/name', {
             method: "GET",
             mode: "cors",
             credentials: "include",
@@ -39,7 +39,7 @@ export const getUserName = async (handleData) => {
 }
 export const addTodoList = async (data) => {
     try {
-        const req = await fetch('http://localhost:8154/add/todo_list', {
+        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/add/todo_list', {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -59,7 +59,7 @@ export const addTodoList = async (data) => {
 }
 export const logout = async (navigate) => {
     try {
-        await fetch('http://localhost:8154/logout', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/logout', {
             method: 'GET',
             credentials: 'include',
         })
@@ -70,7 +70,7 @@ export const logout = async (navigate) => {
 }
 export const deleteTodoList = async (id) => {
     try {
-        const req = await fetch('http://localhost:8154/delete/todo_list', {
+        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/delete/todo_list', {
             method: "DELETE",
             mode: 'cors',
             credentials: 'include',
@@ -90,7 +90,7 @@ export const deleteTodoList = async (id) => {
 }
 
 export const signupAsync = async (data, navigate) => {
-    const req = await fetch("http://localhost:8154/signup", {
+    const req = await fetch("https://lolis-backend-72rvflynbq-et.a.run.app/signup", {
         method: "POST",
         mode: "cors",
         credentials: "include",
@@ -108,7 +108,7 @@ export const signupAsync = async (data, navigate) => {
 
 export const loginAsync = async (userData, navigate) => {
     try {
-        const request = await fetch('http://localhost:8154/login', {
+        const request = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/login', {
             method: "POST",
             mode: "cors",
             credentials: "include",
@@ -129,7 +129,7 @@ export const loginAsync = async (userData, navigate) => {
 
 export const updateStatus = async (newStatus) => {
     try {
-        await fetch('http://localhost:8154/update/todo_list/status', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/update/todo_list/status', {
             method: "PUT",
             mode: "cors",
             credentials: "include",
@@ -146,7 +146,7 @@ export const updateStatus = async (newStatus) => {
 
 export const updateTitle = async (newTitle) => {
     try {
-        await fetch('http://localhost:8154/update/todo_list/title', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/update/todo_list/title', {
             method: "PUT",
             mode: "cors",
             credentials: "include",
@@ -163,7 +163,7 @@ export const updateTitle = async (newTitle) => {
 
 export const updateDescription = async (newDescription) => {
     try {
-        await fetch('http://localhost:8154/update/todo_list/description', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/update/todo_list/description', {
             method: "PUT",
             mode: "cors",
             credentials: "include",
@@ -180,7 +180,7 @@ export const updateDescription = async (newDescription) => {
 
 export const updateDate = async (data) => {
     try {
-        await fetch('http://localhost:8154/update/todo_list/date', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/update/todo_list/date', {
             method: "PUT",
             mode: "cors",
             credentials: "include",
