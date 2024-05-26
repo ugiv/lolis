@@ -3,6 +3,7 @@ export const getData = async (handleData) => {
     try {
         const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/todo_list', {
             method: 'GET',
+            mode: 'cors',
             credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
@@ -23,7 +24,7 @@ export const getUserName = async (handleData) => {
         const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/users/name', {
             method: "GET",
             mode: "cors",
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
@@ -61,6 +62,7 @@ export const logout = async (navigate) => {
     try {
         await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/logout', {
             method: 'GET',
+            mode: 'cors',
             credentials: 'include',
         })
         navigate("/login");
@@ -111,7 +113,7 @@ export const loginAsync = async (userData, navigate) => {
         const request = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/login', {
             method: "POST",
             mode: "cors",
-            credentials: "include",
+            credentials: 'include',
             headers: {
                 "Content-Type": "application/json",
                 "Accept": "application/json"
