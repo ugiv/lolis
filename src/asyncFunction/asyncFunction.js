@@ -25,10 +25,6 @@ export const getUserName = async (handleData) => {
             method: "GET",
             mode: "cors",
             credentials: 'include',
-            headers: {
-                "Content-Type": "application/json",
-                "Accept": "application/json"
-            }
         })
         const response = await req.json();
         if (response.status === 'ok'){
@@ -58,6 +54,7 @@ export const addTodoList = async (data) => {
         console.log(err)
     }
 }
+
 export const logout = async (navigate) => {
     try {
         await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/logout', {
@@ -70,6 +67,7 @@ export const logout = async (navigate) => {
         console.log(err)
     }
 }
+
 export const deleteTodoList = async (id) => {
     try {
         const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/delete/todo_list', {
