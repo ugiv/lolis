@@ -21,15 +21,23 @@ export const getData = async (handleData) => {
 
 export const getUserName = async (handleData) => {
     try {
-        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/users/name', {
+       await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/get/users/name', {
             method: "GET",
             mode: "cors",
             credentials: 'include',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json"
+            }
         })
-        const response = await req.json();
-        if (response.status === 'ok'){
-            handleData(response.response);
-        }
+        .then((data) => data.json())
+        .then((response) => {
+            if (response.status === 'ok'){
+                handleData(response.response);
+            } else {
+                console.log('fail to fetch')
+            }
+        })
     } catch (error) {
         console.log(error)
     }
