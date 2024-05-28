@@ -33,16 +33,21 @@ export default function Dashboard(){
     }
     const handleNewCard = (data) => {
         addTodoList(data);
+        navigate("/dashboard")
     };
     const handleUpdateTodoListStatus = (data) => {
         updateStatus(data);
-        window.location.reload();
+        navigate("/dashboard")
     }
     const handleLogout = () => {
         logout(navigate);
     }
     const handleCancel = () => {
         setNewCard();
+    }
+    const handleDeleteTodoList = (id) => {
+        deleteTodoList(id);
+        navigate("/dashboard");
     }
     useEffect(() => {
         const todoList = document.getElementById('ListTodo');
@@ -123,7 +128,7 @@ export default function Dashboard(){
                                 return card.status === 'Done' ?
                                         <TodoCard 
                                         props={card} 
-                                        handleDelete={deleteTodoList}
+                                        handleDelete={handleDeleteTodoList}
                                         handleUpdateTodoListStatus={handleUpdateTodoListStatus}
                                         defaultStatus={'listed'}
                                     />

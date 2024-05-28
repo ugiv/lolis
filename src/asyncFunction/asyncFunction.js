@@ -44,7 +44,7 @@ export const getUserName = async (handleData) => {
 }
 export const addTodoList = async (data) => {
     try {
-        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/add/todo_list', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/add/todo_list', {
             method: 'POST',
             mode: 'cors',
             credentials: 'include',
@@ -54,10 +54,6 @@ export const addTodoList = async (data) => {
             },
             body: JSON.stringify(data)
         });
-        const response = await req.json();
-        if (response.status === "ok"){
-            window.location.reload();
-        }
     } catch (err) {
         console.log(err)
     }
@@ -78,7 +74,7 @@ export const logout = async (navigate) => {
 
 export const deleteTodoList = async (id) => {
     try {
-        const req = await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/delete/todo_list', {
+        await fetch('https://lolis-backend-72rvflynbq-et.a.run.app/delete/todo_list', {
             method: "DELETE",
             mode: 'cors',
             credentials: 'include',
@@ -88,10 +84,6 @@ export const deleteTodoList = async (id) => {
             },
             body: JSON.stringify({id: id})
         });
-        const response = await req.json();
-        if (response.status === "ok"){
-            window.location.reload();
-        }
     } catch (error){
         console.log(error)
     }
